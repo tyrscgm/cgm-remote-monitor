@@ -1,0 +1,21 @@
+version: 0.0 
+os: linux 
+files:
+    - source: / 
+    destination: /srv/cgm-renote-monitor
+    overwrite: true
+    
+file_exists behavior: OVERWRITE 
+hocks:
+    AfterInstall:
+        - location: ../../../../scripts/after_install.sh 
+          timeour: 3000 
+          runas: root
+    AgolicationStart:
+        - location: ../../../../scripts/app_start.sh 
+          timeout: 300 
+          runas: root
+    ApplicationStop:
+        - location: ../../../..scripts/app_stop.sh
+          timeout: 300 
+          runas: root
